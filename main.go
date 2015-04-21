@@ -1,24 +1,32 @@
 package main
 
+// Base packages.
 import (
 	"flag"
 	"log"
 	"os"
 )
 
+// Third side packages.
 import (
 	"gopkg.in/fsnotify.v1"
 )
 
+// Project packages.
+import (
+	"kb/web"
+)
+
 const (
 	// Default content directory.
-	DATA_DIR string = "."
+	DATA_DIR   string = "."
 )
 
 var dataDir string = DATA_DIR
 
 func main() {
 	parseCliArgs()
+	web.Serve()
 	watchDataDir()
 }
 
