@@ -1,7 +1,12 @@
 package web
 
 import (
+	"kb/assets"
+)
+
+import (
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -10,37 +15,12 @@ type data struct {
 	Content string
 }
 
-var tpl *template.Template
-
-var (
-	tplMain = `
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8"/>
-		<title>{{.Title}}</title>
-	</head>
-
-	<body>
-		{{template "Index"}}
-		{{.Content}}
-	</body>
-</html>
-`
-
-	tplIndex = `
-{{define "Index"}}
-<div>Index</div>
-{{end}}
-`
-)
-
-func init() {
-	tpl, _ = template.New("html").Parse(tplMain)
-	tpl.Parse(tplIndex)
-}
-
 func render(w http.ResponseWriter) {
+	tpl, err := template.New("html").Parse(assets.Html["main.html"])
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	data := data{"Knowledge Base", "Knowledges"}
 	tpl.Execute(w, data)
 }
