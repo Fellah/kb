@@ -1,10 +1,8 @@
 package main
 
-// Base packages.
+// Project packages.
 import (
-	"flag"
-	"log"
-	"os"
+	"kb/web"
 )
 
 // Third side packages.
@@ -12,14 +10,16 @@ import (
 	"gopkg.in/fsnotify.v1"
 )
 
-// Project packages.
+// Base packages.
 import (
-	"kb/web"
+	"flag"
+	"log"
+	"os"
 )
 
 const (
 	// Default content directory.
-	DATA_DIR   string = "."
+	DATA_DIR string = "."
 )
 
 var dataDir string = DATA_DIR
