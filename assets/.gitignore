@@ -1,0 +1,3 @@
+# Ignore generated assets file.
+*.go
+!generate.go
