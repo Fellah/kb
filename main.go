@@ -2,6 +2,7 @@ package main
 
 // Project packages.
 import (
+	"kb/markdown"
 	"kb/web"
 )
 
@@ -26,6 +27,7 @@ var dataDir string = DATA_DIR
 
 func main() {
 	parseCliArgs()
+	markdown.SetBaseDir(dataDir)
 	web.Serve()
 	watchDataDir()
 }
