@@ -16,6 +16,7 @@ import (
 	"flag"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 const (
@@ -27,7 +28,11 @@ var dataDir string = DATA_DIR
 
 func main() {
 	parseCliArgs()
+
+	log.Println("Parse markdown data...")
 	markdown.SetBaseDir(dataDir)
+	filepath.Walk(dataDir, markdown.Walk)
+
 	web.Serve()
 	watchDataDir()
 }

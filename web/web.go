@@ -6,6 +6,7 @@ import (
 )
 
 import (
+	"html/template"
 	"net/http"
 	"strings"
 	"time"
@@ -25,9 +26,21 @@ func (*handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		} else {
 			w.WriteHeader(http.StatusNotFound)
 		}
+	} else if path == "/favicon.ico" {
 	} else {
-		// TODO: Ignore favicon.
-		data, _ := markdown.GetReadme()
+		var file []byte
+
+		path = strings.TrimLeft(path, "/")
+		if path == "" {
+			file = markdown.GetReadme()
+		} else {
+			file = markdown.GetFile(path)
+		}
+		data := data{
+			Title:   "Knowledge Base",
+			Index:   template.HTML(string(markdown.GetIndex())),
+			Content: template.HTML(string(file)),
+		}
 		render(w, data)
 	}
 }

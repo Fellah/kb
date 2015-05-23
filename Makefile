@@ -6,11 +6,13 @@ install: format vet
 format:
 	go fmt kb
 	go fmt kb/assets
+	go fmt kb/cache
 	go fmt kb/markdown
 	go fmt kb/web
 
 vet:
 	go vet kb
 	go vet kb/assets
+	go vet kb/cache
 	go vet kb/markdown
 	go vet kb/web
