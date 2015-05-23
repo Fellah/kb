@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{{.Title}}</title>
-    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+    <base href="http://localhost:8080/"/>
+    <!-- Latest compiled and minified Bootstap CSS. -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/main.css" rel="stylesheet"/>
 </head>
 
-<body>
-<div>{{.Content}}</div>
+<body class="container-fluid">
+<div id="index" class="col-md-4">
+    {{.Index}}
+</div>
+<div id="content"class="col-md-8">
+    {{.Content}}
+</div>
 </body>
 </html>
