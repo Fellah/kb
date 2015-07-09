@@ -1,15 +1,13 @@
 package markdown
 
-// Project packages.
 import (
-	"kb/cache"
-)
+	// Project packages.
+	"github.com/fellah/kb/cache"
 
-// Third side packages.
-import "github.com/russross/blackfriday"
+	// Third side packages.
+	"github.com/russross/blackfriday"
 
-// Golang packages.
-import (
+	// Base packages.
 	"io/ioutil"
 	"log"
 	"os"

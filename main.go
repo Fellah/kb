@@ -1,18 +1,14 @@
 package main
 
-// Project packages.
 import (
-	"kb/markdown"
-	"kb/web"
-)
+	// Project packages.
+	"github.com/fellah/kb/markdown"
+	"github.com/fellah/kb/web"
 
-// Third side packages.
-import (
+	// Third side packages.
 	"gopkg.in/fsnotify.v1"
-)
 
-// Base packages.
-import (
+	// Base packages.
 	"flag"
 	"log"
 	"os"

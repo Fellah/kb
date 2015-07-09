@@ -1,18 +1,21 @@
-install: format vet
-	go generate kb/assets
+install: clean format vet
+	go generate github.com/fellah/kb/assets
 	go test
 	go install -gcflags "-N -l"
 
 format:
-	go fmt kb
-	go fmt kb/assets
-	go fmt kb/cache
-	go fmt kb/markdown
-	go fmt kb/web
+	go fmt github.com/fellah/kb
+	go fmt github.com/fellah/kb/assets
+	go fmt github.com/fellah/kb/cache
+	go fmt github.com/fellah/kb/markdown
+	go fmt github.com/fellah/kb/web
 
 vet:
-	go vet kb
-	go vet kb/assets
-	go vet kb/cache
-	go vet kb/markdown
-	go vet kb/web
+	go vet github.com/fellah/kb
+	go vet github.com/fellah/kb/assets
+	go vet github.com/fellah/kb/cache
+	go vet github.com/fellah/kb/markdown
+	go vet github.com/fellah/kb/web
+
+clean:
+	rm -f $(GOPATH)/bin/kb

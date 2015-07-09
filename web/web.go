@@ -1,11 +1,11 @@
 package web
 
 import (
-	"kb/assets"
-	"kb/markdown"
-)
+	// Project packages.
+	"github.com/fellah/kb/assets"
+	"github.com/fellah/kb/markdown"
 
-import (
+	// Base packages.
 	"html/template"
 	"net/http"
 	"strings"

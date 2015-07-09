@@ -1,10 +1,10 @@
 package web
 
 import (
-	"kb/assets"
-)
+	// Project packages.
+	"github.com/fellah/kb/assets"
 
-import (
+	// Base packages.
 	"html/template"
 	"log"
 	"net/http"
