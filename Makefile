@@ -1,7 +1,22 @@
-install: clean format vet
+VERSION = 0.0.1
+DATETIME = $(shell date)
+COMMIT = $(shell git rev-parse HEAD)
+BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
+AUTHOR = $(shell git config user.name)
+
+LDFLAGS += -X github.com/fellah/version.version '$(VERSION)'
+LDFLAGS += -X github.com/fellah/version.dateTime '$(DATETIME)'
+LDFLAGS += -X github.com/fellah/version.commit '$(COMMIT)'
+LDFLAGS += -X github.com/fellah/version.branch '$(BRANCH)'
+LDFLAGS += -X github.com/fellah/version.author '$(AUTHOR)'
+
+install: clean format vet assets
 	go generate github.com/fellah/kb/assets
 	go test
-	go install -gcflags "-N -l"
+	go install -ldflags="$(LDFLAGS)" -gcflags "-N -l"
+
+clean:
+	rm -f $(GOPATH)/bin/kb
 
 format:
 	go fmt github.com/fellah/kb
@@ -16,6 +31,3 @@ vet:
 	go vet github.com/fellah/kb/cache
 	go vet github.com/fellah/kb/markdown
 	go vet github.com/fellah/kb/web
-
-clean:
-	rm -f $(GOPATH)/bin/kb

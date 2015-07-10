@@ -6,10 +6,12 @@ import (
 	"github.com/fellah/kb/web"
 
 	// Third side packages.
+	"github.com/fellah/version"
 	"gopkg.in/fsnotify.v1"
 
 	// Base packages.
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -22,8 +24,21 @@ const (
 
 var dataDir string = DATA_DIR
 
+var (
+	flgVer *bool
+)
+
 func main() {
 	parseCliArgs()
+
+	if *flgVer {
+		fmt.Println("Version:", version.GetVersion())
+		fmt.Println("DateTime:", version.GetDateTime())
+		fmt.Println("Commit:", version.GetCommit())
+		fmt.Println("Branch:", version.GetBranch())
+		fmt.Println("Author:", version.GetAuthor())
+		return
+	}
 
 	log.Println("Parse markdown data...")
 	markdown.SetBaseDir(dataDir)
@@ -35,7 +50,10 @@ func main() {
 
 // Parse command line arguments.
 func parseCliArgs() {
+	flgVer = flag.Bool("v", false, "Output version information.")
+
 	flag.Parse()
+
 	args := flag.Args()
 
 	// Verify data directory.
