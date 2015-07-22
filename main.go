@@ -32,11 +32,7 @@ func main() {
 	parseCliArgs()
 
 	if *flgVer {
-		fmt.Println("Version:", version.GetVersion())
-		fmt.Println("DateTime:", version.GetDateTime())
-		fmt.Println("Commit:", version.GetCommit())
-		fmt.Println("Branch:", version.GetBranch())
-		fmt.Println("Author:", version.GetAuthor())
+		fmt.Println(version.GetVersion())
 		return
 	}
 

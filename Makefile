@@ -1,14 +1,8 @@
-VERSION = 0.0.1
-DATETIME = $(shell date)
-COMMIT = $(shell git rev-parse HEAD)
-BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
-AUTHOR = $(shell git config user.name)
+VERSION := DateTime:\t$(shell date)\n
+VERSION := $(VERSION)Commit:\t\t$(shell git rev-parse HEAD)\n
+VERSION := $(VERSION)Branch:\t\t$(shell git rev-parse --abbrev-ref HEAD)
 
 LDFLAGS += -X github.com/fellah/version.version '$(VERSION)'
-LDFLAGS += -X github.com/fellah/version.dateTime '$(DATETIME)'
-LDFLAGS += -X github.com/fellah/version.commit '$(COMMIT)'
-LDFLAGS += -X github.com/fellah/version.branch '$(BRANCH)'
-LDFLAGS += -X github.com/fellah/version.author '$(AUTHOR)'
 
 install: clean format vet assets
 	go generate github.com/fellah/kb/assets
